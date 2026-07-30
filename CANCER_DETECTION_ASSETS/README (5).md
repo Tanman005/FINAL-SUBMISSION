@@ -1,4 +1,5 @@
 # Brain Tumor MRI Classification
+NOTE: .ipynb file is named as brain_tumor_cnn_resnet18_efficient.ipynb 
 
 Deep learning pipeline that classifies brain MRI scans into four categories — **glioma**, **meningioma**, **pituitary tumor**, and **no tumor** — using PyTorch. Three architectures are trained and compared: a custom CNN built from scratch, a transfer-learned MobileNetV3-Large, and a fine-tuned EfficientNetV2-S.
 
