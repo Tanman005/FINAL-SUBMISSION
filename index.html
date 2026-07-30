@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Car Price Predictor</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 480px; margin: 40px auto; color: #222; }
+    h1 { font-size: 22px; }
+    label { display: block; margin-top: 12px; font-size: 14px; font-weight: bold; }
+    input, select { width: 100%; padding: 8px; margin-top: 4px; box-sizing: border-box; }
+    button { margin-top: 18px; padding: 10px 16px; background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #1e4fc4; }
+    .result { margin-top: 20px; padding: 12px; background: #f0f9f0; border: 1px solid #cde; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Used Car Price Predictor</h1>
+  <form method="POST" action="/predict">
+    <label>Manufacture Year</label>
+    <input type="number" name="year" min="1990" max="2026" value="2020" required>
+
+    <label>Present (ex-showroom) Price — lakhs</label>
+    <input type="number" step="0.01" name="present_price" value="8.5" required>
+
+    <label>Kilometers Driven</label>
+    <input type="number" name="kms_driven" value="35000" required>
+
+    <label>Fuel Type</label>
+    <select name="fuel_type">
+      {% for f in fuel_types %}<option value="{{ f }}">{{ f }}</option>{% endfor %}
+    </select>
+
+    <label>Seller Type</label>
+    <select name="seller_type">
+      {% for s in seller_types %}<option value="{{ s }}">{{ s }}</option>{% endfor %}
+    </select>
+
+    <label>Transmission</label>
+    <select name="transmission">
+      {% for t in transmissions %}<option value="{{ t }}">{{ t }}</option>{% endfor %}
+    </select>
+
+    <label>Previous Owners</label>
+    <input type="number" name="owner" min="0" max="3" value="0" required>
+
+    <button type="submit">Predict Price</button>
+  </form>
+
+  {% if prediction %}
+  <div class="result"><strong>Predicted Selling Price:</strong> {{ prediction }}</div>
+  {% endif %}
+</body>
+</html>
